@@ -1,0 +1,47 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/trackpad.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &kp ESC   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5   &kp MINUS
+                &kp TAB   &kp Q    &kp W    &kp E    &kp R    &kp T    &kp EQUAL
+                &kp CAPS  &kp A    &kp S    &kp D    &kp F    &kp G
+                &kp LSFT  &kp Z    &kp X    &kp C    &kp V    &kp B    &kp GRAVE
+
+                &kp LCTRL &kp LALT &kp LGUI &mo 1    &tp CIRQUE_TRACKPAD &kp SPACE &kp RET
+
+                // Right half (mirrored)
+                &kp PLUS  &kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &kp BACKSPACE
+                &kp F1    &kp Y    &kp U    &kp I    &kp O    &kp P    &kp SLASH
+                          &kp H    &kp J    &kp K    &kp L    &kp SEMI &kp QUOTE
+                &kp F2    &kp N    &kp M    &kp COMMA &kp DOT &kp F3   &kp RSFT
+
+                &kp RCTRL &kp RGUI &kp RALT &mo 2    &kp LEFT &kp DOWN &kp UP   &kp RIGHT
+            >;
+        };
+
+        // Layer 1 – Function / Media
+        fn_layer {
+            bindings = <
+                &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &trans
+                &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12   &trans
+                &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans
+
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans
+
+                // Right half
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans
+                          &trans    &trans    &trans    &trans    &trans    &trans
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans
+
+                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
+            >;
+        };
+    };
+};

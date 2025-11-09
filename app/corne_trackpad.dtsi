@@ -1,0 +1,40 @@
+/* app/corne_trackpad.dtsi */
+/ {
+    chosen {
+        zmk,trackpad = &cirque_trackpad;
+    };
+};
+
+/* ------------------------------------------------- */
+/* Cirque TM035035 (35 mm) on SPI0                     */
+/* ------------------------------------------------- */
+
+/* SPI0 pins – nRF52840 (Nice!Nano) */
+&spi0 {
+    status = "okay";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-names = "default";
+
+    cirque_trackpad: tm035035@0 {
+        compatible = "cirque,pinnacle";
+        reg = <0>;
+        spi-max-frequency = <1000000>;   /* 1 MHz – safe for battery */
+        dr-pin = <&gpio0 15 GPIO_ACTIVE_LOW>;   /* DR (Data Ready) */
+        reset-pin = <&gpio0 13 GPIO_ACTIVE_HIGH>;/* RST */
+        abs-x-scale = <3500>;   /* adjust after calibration */
+        abs-y-scale = <3500>;
+        rotate = <0>;
+        label = "CIRQUE_TRACKPAD";
+    };
+};
+
+/* Pin control – map to Nice!Nano pins */
+&pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK,  0,  8)>,   /* SCK  – P0.08 */
+                    <NRF_PSEL(SPIM_MOSI, 0, 10)>,   /* MOSI – P0.10 */
+                    <NRF_PSEL(SPIM_MISO, 0,  9)>;   /* MISO – P0.09 */
+        };
+    };
+};
